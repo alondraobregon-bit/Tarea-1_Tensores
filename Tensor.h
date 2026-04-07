@@ -47,8 +47,7 @@ public:
 
     static Tensor concat(const std::vector<Tensor>& tensores, size_t dim);
 
-    //
-
+    // Funciones friend
     friend Tensor dot(const Tensor& a, const Tensor& b);
     friend Tensor matmul(const Tensor& a, const Tensor& b);
 

@@ -32,7 +32,7 @@ size_t Tensor::n_elementos(const std::vector<size_t>& shape) {
 Tensor Tensor::zeros(const std::vector<size_t>& shape) {
     // Se valida las dimensiones del tensor
     if (shape.empty() || shape.size()>3)
-        throw std::invalid_argument("zeros: Dimesiones invalidas. EL tensor debe ser de 1D, 2D O 3D");
+        throw std::invalid_argument("Dimesiones invalidas para matriz zero. EL tensor debe ser de 1D, 2D O 3D");
 
     // Se crea los valores del tensor zeros
     size_t total = n_elementos(shape);
@@ -44,7 +44,7 @@ Tensor Tensor::zeros(const std::vector<size_t>& shape) {
 Tensor Tensor::ones(const std::vector<size_t>& shape) {
     // Se valida las dimensiones del tensor
     if (shape.empty() || shape.size()>3)
-        throw std::invalid_argument("ones: Dimesiones invalidas. EL tensor debe ser de 1D, 2D O 3D");
+        throw std::invalid_argument("Dimesiones invalidas para matriz ones. EL tensor debe ser de 1D, 2D O 3D");
 
     // Se crea los valores del tensor ones
     size_t total = n_elementos(shape);
@@ -56,7 +56,7 @@ Tensor Tensor::ones(const std::vector<size_t>& shape) {
 Tensor Tensor::random(const std::vector<size_t>& shape, double min, double max) {
     // Se valida las dimensiones del tensor
     if (shape.empty() || shape.size() > 3)
-        throw std::invalid_argument("random: Dimesiones invalidas. EL tensor debe ser de 1D, 2D O 3D");
+        throw std::invalid_argument("Dimesiones invalidas para matriz random. EL tensor debe ser de 1D, 2D O 3D");
 
     // Se crea los valores random para el tensor
     size_t total = n_elementos(shape);
@@ -72,7 +72,7 @@ Tensor Tensor::random(const std::vector<size_t>& shape, double min, double max) 
 Tensor Tensor::arange(double start, double end) {
     // Se valida de concordancia de limites
     if (start >= end)
-        throw std::invalid_argument("arange: Limites invalidos. Start debe ser menor que End");
+        throw std::invalid_argument("Limites invalidos. Start debe ser menor que End");
 
     // Se crea los valores secuanciales para el tensor
     std::vector<double> values;
@@ -158,7 +158,7 @@ Tensor Tensor::apply(const TensorTransform& transform) const {
 Tensor Tensor::operator+(const Tensor& other) const {
     // Validar que tengan la misma forma
     if (shape != other.shape)
-        throw std::invalid_argument("Suma: Dimensiones incompatibles");
+        throw std::invalid_argument("Dimensiones incompatibles para suma de tensores");
 
     std::vector<double> values(elementos);
 
@@ -172,7 +172,7 @@ Tensor Tensor::operator+(const Tensor& other) const {
 Tensor Tensor::operator-(const Tensor& other) const {
     // Validar que tengan la misma forma
     if (shape != other.shape)
-        throw std::invalid_argument("Resta: Dimensiones incompatibles");
+        throw std::invalid_argument("Dimensiones incompatibles para resta de tensores");
 
     std::vector<double> values(elementos);
 
@@ -187,7 +187,7 @@ Tensor Tensor::operator-(const Tensor& other) const {
 Tensor Tensor::operator*(const Tensor& other) const {
     // Validar que tengan la misma forma
     if (shape != other.shape)
-        throw std::invalid_argument("MUltiplicacion: dimensiones incompatibles");
+        throw std::invalid_argument("Dimensiones incompatibles para multiplicacion de tensores");
 
     std::vector<double> values(elementos);
 
@@ -213,7 +213,7 @@ Tensor Tensor::operator*(double scalar) const {
 
 Tensor Tensor::view(const std::vector<size_t>& new_shape) const {
     if (new_shape.empty() || new_shape.size() > 3)
-        throw std::invalid_argument("view: Dimensiones invalidas, maximo 3D");
+        throw std::invalid_argument("Dimensiones invalidas, maximo 3D");
 
     size_t new_size = n_elementos(new_shape);
 
@@ -229,9 +229,9 @@ Tensor Tensor::view(const std::vector<size_t>& new_shape) const {
 Tensor Tensor::unsqueeze(size_t dim) const {
     // Validar dimensión y su limite
     if (dim > shape.size())
-        throw std::invalid_argument("unsqueeze: dimension invalida");
+        throw std::invalid_argument("Dimension invalida para añadir");
     if (shape.size() + 1 > 3)
-        throw std::invalid_argument("unsqueeze: maximo 3 dimensiones");
+        throw std::invalid_argument("Excede. El maximo de dimensiones es 3");
 
     // Crear y insertar la dimension extra
     std::vector<size_t> new_shape = shape;
@@ -249,12 +249,12 @@ Tensor Tensor::concat(const std::vector<Tensor>& tensores, size_t dim) {
 
     // validacion de dimensiones
     if (tensores.empty())
-        throw std::invalid_argument("concat: lista vacia");
+        throw std::invalid_argument("Lista vacia");
 
     const Tensor& base = tensores[0];
 
     if (dim >= base.shape.size())
-        throw std::invalid_argument("concat: dimension invalida");
+        throw std::invalid_argument("Dimension invalida para concatenar");
 
     // crear un objeto que alamnece el primer vector
     std::vector<size_t> nueva_forma = base.shape;
@@ -263,10 +263,10 @@ Tensor Tensor::concat(const std::vector<Tensor>& tensores, size_t dim) {
     // suma de dimensiones
     for (const Tensor& t : tensores) {
         if (t.shape.size() != base.shape.size())
-            throw std::invalid_argument("concat: dimensiones incompatibles");
+            throw std::invalid_argument("Dimensiones incompatibles para concatenar");
         for (size_t i = 0; i < t.shape.size(); i++) {
             if (i != dim && t.shape[i] != base.shape[i])
-                throw std::invalid_argument("concat: dimensiones incompatibles");
+                throw std::invalid_argument("Dimensiones incompatibles para concatenar");
         }
         suma_dim += t.shape[dim];
     }

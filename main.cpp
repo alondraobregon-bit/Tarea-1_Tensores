@@ -7,7 +7,7 @@ using namespace std;
 Tensor dot(const Tensor& a, const Tensor& b) {
     // validacion de tamaño de dimensiones
     if (a.elementos != b.elementos)
-        throw std::invalid_argument("dot: tamaños incompatibles");
+        throw std::invalid_argument("Dimensiones incompatibles para multiplicación punto de tensores");
 
     double resultado = 0.0;
 
@@ -22,14 +22,14 @@ Tensor matmul(const Tensor& a, const Tensor& b) {
 
     // Validar que ambos tensores sean tensores 2D
     if (a.shape.size() != 2 || b.shape.size() != 2)
-        throw std::invalid_argument("matmul: solo tensores 2D");
+        throw std::invalid_argument("Solo multiplicacion cruz de tensores 2D");
 
     size_t row_a = a.shape[0];
     size_t col_a = a.shape[1];
     size_t col_b = b.shape[1];
 
     if (col_a != b.shape[0])
-        throw std::invalid_argument("matmul: dimensiones incompatibles");
+        throw std::invalid_argument("Multiplicacion cruz de tensores con dimensiones incompatibles");
 
     std::vector<double> valores(row_a * col_b, 0.0);
 
