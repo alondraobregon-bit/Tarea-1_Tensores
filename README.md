@@ -1,6 +1,6 @@
 # Implementación de la Librería Tensor++ y Red Neuronal en C++
 
-## 📌 Descripción
+## Descripción
 
 En este proyecto se diseña e implementa una librería en C++ llamada **Tensor++**, inspirada en bibliotecas científicas como NumPy y PyTorch.
 
@@ -10,7 +10,7 @@ Como aplicación, se implementa una simulación de una red neuronal que emplea f
 
 ---
 
-## ⚠️ Consideraciones
+## Consideraciones
 
 * La librería soporta tensores de hasta 3 dimensiones.
 * Se validan las dimensiones para evitar operaciones incompatibles.
@@ -19,9 +19,9 @@ Como aplicación, se implementa una simulación de una red neuronal que emplea f
 
 ---
 
-## 🛠️ Compilación y ejecución
+## Compilación y ejecución
 
-### 🔹 Opción 1: Usando CLion
+### Opción 1: Usando CLion
 
 1. Clonar el repositorio:
 
@@ -33,11 +33,10 @@ git clone https://github.com/alondraobregon-bit/Tarea-1_Tensores.git
 
 3. Esperar a que CMake configure automáticamente.
 
-4. Ejecutar el programa mediante el botón **Run ▶️**
-
+4. Ejecutar el programa.
 ---
 
-### 🔹 Opción 2: Descarga manual (ZIP)
+### Opción 2: Descarga manual (ZIP)
 
 1. Descargar el proyecto en formato ZIP desde GitHub.
 
@@ -45,11 +44,11 @@ git clone https://github.com/alondraobregon-bit/Tarea-1_Tensores.git
 
 3. Abrir el proyecto en CLion.
 
-4. Ejecutar el programa con el botón **Run ▶️**
+4. Ejecutar el programa.
 
 ---
 
-## ✅ Resultado esperado
+## Resultado esperado
 
 Al ejecutar el programa se obtiene:
 
@@ -59,7 +58,7 @@ Red neuronal ejecutada
 
 ---
 
-## 👩‍💻 Autores
+## Autores
 
 * Alondra Solange Obregon Carhuavilca
 * Alvaro Mallky Alagón Aguilar
